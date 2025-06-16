@@ -1,4 +1,4 @@
-// 🔧 Replace this with YOUR OWN Firebase config from the console
+// 🔧 Firebase config (unchanged)
 const firebaseConfig = {
   apiKey:"AIzaSyCcYe9IBKnJKF20lQakTze9Q6F5NRTAu2A",
   authDomain:"health-care-portal-1cfce.firebaseapp.com",
@@ -14,6 +14,7 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 const patientListDiv = document.getElementById("patient-list");
 
+// Load patients from Firebase
 db.ref("patients").once("value")
   .then(snapshot => {
     const patients = snapshot.val();
@@ -45,11 +46,55 @@ db.ref("patients").once("value")
     patientListDiv.innerHTML = "<p>Error loading patient data.</p>";
   });
 
-function generatePrescription(patientId) {
+// Hugging Face token (only for testing)
+const HF_API_TOKEN = "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";
+async function generatePrescription(patientId) {
   const symptoms = document.getElementById(`symptoms-${patientId}`).value;
-  const prescription = `AI Suggestion: Prescribe 500mg paracetamol for symptoms "${symptoms}"`;
 
-  document.getElementById(`prescription-${patientId}`).innerText = prescription;
+  if (!symptoms) {
+    alert("Please enter symptoms before generating prescription.");
+    return;
+  }
 
-  db.ref(`patients/${patientId}/prescription`).set(prescription);
+  document.getElementById(`prescription-${patientId}`).innerText = "⏳ Generating prescription...";
+
+  try {
+    const response = await fetch("https://api-inference.huggingface.co/models/HuggingFaceH4/zephyr-7b-beta", {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${HF_API_TOKEN}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        inputs: `A patient reports the following symptoms: ${symptoms}.
+Use proper medical terminology and abbreviations. Consider the patient's age, medical history, and any allergies. Provide alternatives or substitutions where appropriate. Use a clear, legible format.
+Generate a clear, medically sound prescription using the format below **only**:
+
+1. Medicine Name — Dosage — Frequency — Duration  
+   - Purpose:  
+   - Instructions:  
+   - Side Effects:  
+   - Warnings:  
+
+Respond only with the prescription. Avoid filler words, disclaimers, or headings. Make the prescription complete and concise.`,
+        parameters: {
+          max_new_tokens: 400,
+          temperature: 0.5,
+          return_full_text: false
+        }
+      })
+    });
+
+    const result = await response.json();
+
+    console.log("HF Response:", result);
+
+    const prescription = result?.[0]?.generated_text?.trim() || "⚠️ No prescription generated.";
+    document.getElementById(`prescription-${patientId}`).innerText = prescription;
+
+    db.ref(`patients/${patientId}/prescription`).set(prescription);
+  } catch (error) {
+    console.error("Error generating prescription:", error);
+    document.getElementById(`prescription-${patientId}`).innerText = "❌ Error generating prescription.";
+  }
 }
