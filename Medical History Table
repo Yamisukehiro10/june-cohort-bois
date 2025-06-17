@@ -1,0 +1,9 @@
+CREATE TABLE MedicalHistory (
+    HistoryID INT PRIMARY KEY AUTO_INCREMENT,
+    PatientID INT,
+    IllnessName VARCHAR(255),
+    DiagnosisDate DATE,
+    Treatment TEXT,
+    Notes TEXT,
+    FOREIGN KEY (PatientID) REFERENCES Patients(PatientID)
+);
