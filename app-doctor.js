@@ -29,15 +29,23 @@ db.ref("patients").once("value")
     Object.entries(patients).forEach(([id, data]) => {
       const card = document.createElement("div");
       card.innerHTML = `
-        <h3>${data.name}</h3>
-        <p><strong>Age:</strong> ${data.age}</p>
-        <p><strong>Diagnosis:</strong> ${data.diagnosis}</p>
-        <p><strong>History:</strong> ${data.history}</p>
-        <input type="text" id="symptoms-${id}" placeholder="Enter symptoms..." />
-        <button onclick="generatePrescription('${id}')">Generate & Save Prescription</button>
-        <p id="prescription-${id}"></p>
-        <hr/>
-      `;
+  <h3>${data.name}</h3>
+  <p><strong>Age:</strong> ${data.age}</p>
+  <p><strong>Diagnosis:</strong> ${data.diagnosis}</p>
+  <p><strong>History:</strong> ${data.history || "None"}</p>
+
+  <input type="text" id="symptoms-${id}" placeholder="Enter symptoms..." />
+  <button onclick="generatePrescription('${id}')">🧠 Generate AI Prescription</button>
+  <br><br>
+  <textarea id="prescription-${id}" placeholder="AI Prescription will appear here..." rows="5" cols="50">${data.prescription || ""}</textarea>
+  <br>
+  <button onclick="saveDraft('${id}')">💾 Save Draft</button>
+  <button onclick="approvePrescription('${id}')">✅ Approve</button>
+  <p id="status-${id}">${data.approved ? "✅ Approved" : "❌ Not yet approved"}</p>
+  <hr/>
+`;
+
+
       patientListDiv.appendChild(card);
     });
   })
@@ -84,6 +92,24 @@ Respond only with the prescription. Avoid filler words, disclaimers, or headings
         }
       })
     });
+    window.saveDraft = function(patientId) {
+  const draftText = document.getElementById(`prescription-${patientId}`).value;
+  db.ref("patients/" + patientId).update({
+    prescription: draftText,
+    approved: false
+  });
+  document.getElementById(`status-${patientId}`).innerText = "💾 Draft saved";
+};
+
+window.approvePrescription = function(patientId) {
+  const approvedText = document.getElementById(`prescription-${patientId}`).value;
+  db.ref("patients/" + patientId).update({
+    prescription: approvedText,
+    approved: true
+  });
+  document.getElementById(`status-${patientId}`).innerText = "✅ Approved";
+};
+
 
     const result = await response.json();
 
