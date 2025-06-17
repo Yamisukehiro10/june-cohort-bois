@@ -1,0 +1,21 @@
+CREATE TABLE MedicalRecords (
+    RecordID INT PRIMARY KEY AUTO_INCREMENT,
+    PatientID INT,
+    RecordType VARCHAR(100), -- e.g., Lab Report, X-Ray, Prescription
+    Description TEXT,
+    RecordDate DATE,
+    FilePath VARCHAR(255), -- for uploaded files if needed
+    FOREIGN KEY (PatientID) REFERENCES Patients(PatientID)
+);
+
+
+CREATE TABLE MedicineConsumption (
+    ConsumptionID INT PRIMARY KEY AUTO_INCREMENT,
+    PatientID INT,
+    MedicineName VARCHAR(100),
+    Dosage VARCHAR(100),
+    StartDate DATE,
+    EndDate DATE,
+    PrescribedBy VARCHAR(100),
+    FOREIGN KEY (PatientID) REFERENCES Patients(PatientID)
+);
