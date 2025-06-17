@@ -11,37 +11,69 @@ const firebaseConfig = {
   appId:"1:290636784551:web:0fcbb92922b36ae5d2cc82"
 };
 
+// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-
 const db = firebase.database();
 
-document.getElementById("patient-form").addEventListener("submit", function(e) {
+// Handle Patient Form Submission
+document.getElementById("patient-form").addEventListener("submit", function (e) {
   e.preventDefault();
 
   const name = document.getElementById("name").value.trim();
-  const age = document.getElementById("age").value;
-  const symptoms = document.getElementById("symptoms").value.trim();
+  const age = document.getElementById("age").value.trim();
+  const diagnosis = document.getElementById("diagnosis").value.trim();
   const history = document.getElementById("history").value.trim();
 
-  if (!name || !age || !symptoms) {
-    alert("Please fill in all required fields.");
+  if (!name || !age || !diagnosis) {
+    alert("Please fill all required fields.");
     return;
   }
 
   const newPatientRef = db.ref("patients").push();
+  const patientId = newPatientRef.key;
+
   newPatientRef.set({
     name,
     age,
-    diagnosis: symptoms,
+    diagnosis,
     history,
     prescription: ""
-  }, function(error) {
-    const status = document.getElementById("status");
-    if (error) {
-      status.innerText = "❌ Failed to submit. Try again.";
-    } else {
-      status.innerText = "✅ Submitted successfully!";
-      document.getElementById("patient-form").reset();
+  });
+
+  document.getElementById("submit-message").innerHTML =
+    `<p style="color: green;">Data submitted successfully! Your patient ID is: ${patientId}</p>`;
+  document.getElementById("patient-form").reset();
+});
+
+// Handle Check Prescription Form
+document.getElementById("check-form").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const name = document.getElementById("check-name").value.trim();
+  const age = document.getElementById("check-age").value.trim();
+
+  if (!name || !age) {
+    alert("Please enter name and age.");
+    return;
+  }
+
+  db.ref("patients").once("value", function (snapshot) {
+    let found = false;
+
+    snapshot.forEach((child) => {
+      const data = child.val();
+
+      if (data.name === name && String(data.age) === String(age)) {
+        found = true;
+        document.getElementById("check-result").innerHTML = `
+          <h3>Prescription for ${data.name}</h3>
+          <pre>${data.prescription ? data.prescription : "Doctor has not uploaded a prescription yet."}</pre>
+        `;
+      }
+    });
+
+    if (!found) {
+      document.getElementById("check-result").innerHTML = `<p style="color:red;">No matching patient found.</p>`;
     }
   });
 });

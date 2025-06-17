@@ -1,26 +1,68 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Patient Interface</title>
+  <meta charset="UTF-8">
+  <title>Patient Portal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+    }
+    input, textarea, button {
+      display: block;
+      margin: 10px 0;
+      padding: 8px;
+      width: 100%;
+      max-width: 400px;
+    }
+    textarea {
+      height: 100px;
+    }
+    h1, h2, h3 {
+      color: #2c3e50;
+    }
+    .section {
+      margin-bottom: 40px;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+    }
+  </style>
 </head>
 <body>
-  <h2>Patient Dashboard</h2>
-  <form id="patient-form">
-    <input type="text" id="name" placeholder="Full Name" required /><br><br>
-    <input type="number" id="age" placeholder="Age" required /><br><br>
-    <input type="text" id="symptoms" placeholder="Symptoms" required /><br><br>
-    <textarea id="history" placeholder="Medical History"></textarea><br><br>
-    <button type="submit">Submit</button>
-  </form>
 
-  <p id="status"></p>
+  <h1>Patient Interface</h1>
+
+  <!-- Submit Your Information -->
+  <div class="section">
+    <h2>Submit Your Information</h2>
+    <form id="patient-form">
+      <input type="text" id="name" placeholder="Your Name" required />
+      <input type="number" id="age" placeholder="Your Age" required />
+      <textarea id="diagnosis" placeholder="Describe your symptoms..." required></textarea>
+      <textarea id="history" placeholder="Medical history (if any)..."></textarea>
+      <button type="submit">Submit</button>
+    </form>
+    <div id="submit-message"></div>
+  </div>
+
+  <!-- Check Your Prescription -->
+  <div class="section">
+    <h2>Check Your Prescription</h2>
+    <form id="check-form">
+      <input type="text" id="check-name" placeholder="Enter your name" required>
+      <input type="number" id="check-age" placeholder="Enter your age" required>
+      <button type="submit">View Prescription</button>
+    </form>
+    <div id="check-result"></div>
+  </div>
 
   <!-- Firebase Scripts -->
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-  
-  <!-- App Script -->
   <script src="app-patient.js"></script>
+
 </body>
 </html>
+
 
