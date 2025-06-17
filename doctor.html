@@ -9,16 +9,20 @@
 <body>
   <h1>Doctor Dashboard</h1>
 
-  <!-- This is where patient list will show -->
+  <p style="font-style: italic; color: gray;">
+    Click “Generate AI Prescription”, then review it, optionally edit, and approve it when ready.
+  </p> <!-- ✅ Added description for doctor -->
+
+  <!-- ✅ This is where patient list will show -->
   <div id="patient-list">
     <p>Loading patient data...</p>
   </div>
 
-  <!-- Firebase SDKs -->
+  <!-- ✅ Firebase SDKs -->
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
-  <!-- Your doctor logic -->
+  <!-- ✅ Your doctor logic -->
   <script src="app-doctor.js"></script>
 </body>
 </html>

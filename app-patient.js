@@ -37,11 +37,12 @@ document.getElementById("patient-form").addEventListener("submit", function (e) 
     age,
     diagnosis,
     history,
-    prescription: ""
+    prescription: "",
+    approved: false // <-- Added this line
   });
 
   document.getElementById("submit-message").innerHTML =
-    `<p style="color: green;">Data submitted successfully! Your patient ID is: ${patientId}</p>`;
+    `<p style="color: green;">Data submitted successfully! </p>`;
   document.getElementById("patient-form").reset();
 });
 
@@ -65,15 +66,24 @@ document.getElementById("check-form").addEventListener("submit", function (e) {
 
       if (data.name === name && String(data.age) === String(age)) {
         found = true;
-        document.getElementById("check-result").innerHTML = `
-          <h3>Prescription for ${data.name}</h3>
-          <pre>${data.prescription ? data.prescription : "Doctor has not uploaded a prescription yet."}</pre>
-        `;
+
+        if (data.approved) {
+          document.getElementById("check-result").innerHTML = `
+            <h3>Prescription for ${data.name}</h3>
+            <pre>${data.prescription || "No prescription available."}</pre>
+          `;
+        } else {
+          document.getElementById("check-result").innerHTML = `
+            <h3>Prescription for ${data.name}</h3>
+            <p style="color: orange;">Your prescription is being reviewed by the doctor. Please check back later.</p>
+          `;
+        }
       }
     });
 
     if (!found) {
-      document.getElementById("check-result").innerHTML = `<p style="color:red;">No matching patient found.</p>`;
+      document.getElementById("check-result").innerHTML =
+        `<p style="color:red;">No matching patient found.</p>`;
     }
   });
 });
