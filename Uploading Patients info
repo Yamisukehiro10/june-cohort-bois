@@ -1,0 +1,11 @@
+INSERT INTO Patients (FirstName, LastName, DateOfBirth, Gender, ContactInfo)
+VALUES ('John', 'Doe', '1990-05-20', 'Male', '1234567890');
+
+INSERT INTO MedicalHistory (PatientID, IllnessName, DiagnosisDate, Treatment, Notes)
+VALUES (1, 'Diabetes Type 2', '2020-06-15', 'Insulin therapy', 'Regular monitoring required');
+
+INSERT INTO MedicalRecords (PatientID, RecordType, Description, RecordDate)
+VALUES (1, 'Lab Report', 'Blood Sugar Test', '2024-01-10');
+
+INSERT INTO MedicineConsumption (PatientID, MedicineName, Dosage, StartDate, EndDate, PrescribedBy)
+VALUES (1, 'Metformin', '500mg twice a day', '2024-01-01', '2024-06-01', 'Dr. Smith');
