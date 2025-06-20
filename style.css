@@ -38,3 +38,261 @@ h2, h3 {
   margin-top: 0;
   color: #007BFF;
 }
+
+.section {
+  margin-bottom: 40px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: #f9f9f9;
+}
+
+.form-section input,
+.form-section textarea,
+.form-section button {
+  display: block;
+  margin: 10px 0;
+  padding: 10px;
+  width: 100%;
+  max-width: 400px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.form-section textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+button {
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+h1, h2, h3 {
+  color: #2c3e50;
+  text-align: center;
+}
+
+/* Landing Page Styles */
+.landing-bg {
+  min-height: 100vh;
+  background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1500&q=80') no-repeat center center fixed;
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+}
+.overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 123, 255, 0.45);
+  z-index: 0;
+}
+.landing-container {
+  position: relative;
+  z-index: 1;
+  background: rgba(255,255,255,0.92);
+  margin-top: 60px;
+  padding: 40px 30px 30px 30px;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  text-align: center;
+}
+.logo-img {
+  width: 90px;
+  margin-bottom: 18px;
+  filter: drop-shadow(0 2px 8px rgba(0,123,255,0.15));
+  background: #fff;
+  border-radius: 50%;
+  padding: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+  border: 2px solid #eaeaea;
+}
+.landing-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #007BFF;
+  letter-spacing: 1px;
+}
+.landing-title .highlight {
+  color: #2c3e50;
+  background: linear-gradient(90deg, #a8e063 0%, #56ab2f 100%);
+  border-radius: 6px;
+  padding: 0 8px;
+}
+.landing-desc {
+  font-size: 1.2rem;
+  color: #444;
+  margin-bottom: 32px;
+}
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+.role-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(90deg, #007BFF 0%, #00c6ff 100%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 16px 36px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  box-shadow: 0 4px 16px rgba(0,123,255,0.13);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+.role-btn span {
+  font-size: 1.5em;
+}
+.role-btn:hover {
+  background: linear-gradient(90deg, #0056b3 0%, #007BFF 100%);
+  transform: translateY(-2px) scale(1.04);
+}
+.doctor-btn {
+  background: linear-gradient(90deg, #43cea2 0%, #185a9d 100%);
+}
+.doctor-btn:hover {
+  background: linear-gradient(90deg, #185a9d 0%, #43cea2 100%);
+}
+.patient-btn {
+  background: linear-gradient(90deg, #ff512f 0%, #dd2476 100%);
+}
+.patient-btn:hover {
+  background: linear-gradient(90deg, #dd2476 0%, #ff512f 100%);
+}
+@media (max-width: 600px) {
+  .landing-container {
+    padding: 20px 5px;
+  }
+  .button-group {
+    flex-direction: column;
+    gap: 18px;
+  }
+}
+
+/* Patient Page Styles */
+.patient-bg {
+  min-height: 100vh;
+  background: url('https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=1500&q=80') no-repeat center center fixed;
+  background-size: cover;
+  position: relative;
+  /* overflow: hidden; */
+}
+.patient-container {
+  position: relative;
+  z-index: 1;
+  background: rgba(255,255,255,0.96);
+  margin-top: 50px;
+  padding: 36px 24px 24px 24px;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(221,36,118,0.13);
+  text-align: center;
+  max-width: 600px;
+}
+.patient-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #dd2476;
+  letter-spacing: 1px;
+}
+.patient-section {
+  background: rgba(255, 245, 250, 0.95);
+  border-left: 6px solid #dd2476;
+  box-shadow: 0 2px 12px rgba(221,36,118,0.07);
+}
+.patient-btn {
+  background: linear-gradient(90deg, #ff512f 0%, #dd2476 100%);
+}
+.patient-btn:hover {
+  background: linear-gradient(90deg, #dd2476 0%, #ff512f 100%);
+}
+.doctor-btn {
+  background: linear-gradient(90deg, #43cea2 0%, #185a9d 100%);
+}
+.doctor-btn:hover {
+  background: linear-gradient(90deg, #185a9d 0%, #43cea2 100%);
+}
+.overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(221, 36, 118, 0.18);
+  z-index: 0;
+}
+@media (max-width: 700px) {
+  .patient-container {
+    padding: 16px 2px;
+    margin-top: 10px;
+  }
+}
+
+/* Doctor Page Styles */
+.doctor-bg {
+  min-height: 100vh;
+  background: url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd23?auto=format&fit=crop&w=1500&q=80') no-repeat center center fixed;
+  background-size: cover;
+  position: relative;
+}
+.doctor-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(67, 206, 162, 0.18);
+  z-index: 0;
+}
+.doctor-container {
+  position: relative;
+  z-index: 1;
+  background: rgba(255,255,255,0.96);
+  margin-top: 50px;
+  padding: 36px 24px 24px 24px;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(67,206,162,0.13);
+  text-align: center;
+  max-width: 700px;
+  color: #185a9d;
+}
+.doctor-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #fff;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 8px rgba(24,90,157,0.18);
+}
+.doctor-desc {
+  font-size: 1.1rem;
+  color: #fff;
+  background: linear-gradient(90deg, #43cea2 0%, #185a9d 100%);
+  border-radius: 8px;
+  padding: 10px 18px;
+  margin-bottom: 28px;
+  display: inline-block;
+  box-shadow: 0 2px 8px rgba(67,206,162,0.08);
+  text-shadow: 0 2px 8px rgba(24,90,157,0.18);
+}
+.doctor-container #patient-list {
+  margin-top: 30px;
+}
+@media (max-width: 700px) {
+  .doctor-container {
+    padding: 16px 2px;
+    margin-top: 10px;
+  }
+}

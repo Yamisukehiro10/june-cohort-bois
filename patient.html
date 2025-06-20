@@ -3,65 +3,40 @@
 <head>
   <meta charset="UTF-8">
   <title>Patient Portal</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 30px;
-    }
-    input, textarea, button {
-      display: block;
-      margin: 10px 0;
-      padding: 8px;
-      width: 100%;
-      max-width: 400px;
-    }
-    textarea {
-      height: 100px;
-    }
-    h1, h2, h3 {
-      color: #2c3e50;
-    }
-    .section {
-      margin-bottom: 40px;
-      padding: 20px;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
-
-  <h1>Patient Interface</h1>
-
-  <!-- Submit Your Information -->
-  <div class="section">
-    <h2>Submit Your Information</h2>
-    <form id="patient-form">
-      <input type="text" id="name" placeholder="Your Name" required />
-      <input type="number" id="age" placeholder="Your Age" required />
-      <textarea id="diagnosis" placeholder="Describe your symptoms..." required></textarea>
-      <textarea id="history" placeholder="Medical history (if any)..."></textarea>
-      <button type="submit">Submit</button>
-    </form>
-    <div id="submit-message"></div>
+<body class="patient-bg">
+  <div class="overlay"></div>
+  <div class="container patient-container">
+    <img src="https://cdn-icons-png.flaticon.com/512/2966/2966484.png" alt="Patient Portal Logo" class="logo-img">
+    <h1 class="patient-title">Patient <span class="highlight">Interface</span></h1>
+    <!-- Submit Your Information -->
+    <div class="section patient-section">
+      <h2>Submit Your Information</h2>
+      <form id="patient-form" class="form-section">
+        <input type="text" id="name" placeholder="Your Name" required />
+        <input type="number" id="age" placeholder="Your Age" required />
+        <textarea id="diagnosis" placeholder="Describe your symptoms..." required></textarea>
+        <textarea id="history" placeholder="Medical history (if any)..."></textarea>
+        <button type="submit" class="role-btn patient-btn"><span>📝</span> Submit</button>
+      </form>
+      <div id="submit-message"></div>
+    </div>
+    <!-- Check Your Prescription -->
+    <div class="section patient-section">
+      <h2>Check Your Prescription</h2>
+      <form id="check-form" class="form-section">
+        <input type="text" id="check-name" placeholder="Enter your name" required>
+        <input type="number" id="check-age" placeholder="Enter your age" required>
+        <button type="submit" class="role-btn doctor-btn"><span>💊</span> View Prescription</button>
+      </form>
+      <div id="check-result"></div>
+    </div>
   </div>
-
-  <!-- Check Your Prescription -->
-  <div class="section">
-    <h2>Check Your Prescription</h2>
-    <form id="check-form">
-      <input type="text" id="check-name" placeholder="Enter your name" required>
-      <input type="number" id="check-age" placeholder="Enter your age" required>
-      <button type="submit">View Prescription</button>
-    </form>
-    <div id="check-result"></div>
-  </div>
-
   <!-- Firebase Scripts -->
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
   <script src="app-patient.js"></script>
-
 </body>
 </html>
 

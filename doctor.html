@@ -6,22 +6,22 @@
   <title>Doctor Dashboard</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <h1>Doctor Dashboard</h1>
-
-  <p style="font-style: italic; color: gray;">
-    Click “Generate AI Prescription”, then review it, optionally edit, and approve it when ready.
-  </p> <!-- ✅ Added description for doctor -->
-
-  <!-- ✅ This is where patient list will show -->
-  <div id="patient-list">
-    <p>Loading patient data...</p>
+<body class="doctor-bg">
+  <div class="overlay doctor-overlay"></div>
+  <div class="container doctor-container">
+    <img src="https://cdn-icons-png.flaticon.com/512/3774/3774299.png" alt="Doctor Portal Logo" class="logo-img">
+    <h1 class="doctor-title">Doctor <span class="highlight">Dashboard</span></h1>
+    <p class="doctor-desc">
+      Click “Generate AI Prescription”, then review it, optionally edit, and approve it when ready.
+    </p>
+    <!-- ✅ This is where patient list will show -->
+    <div id="patient-list">
+      <p>Loading patient data...</p>
+    </div>
   </div>
-
   <!-- ✅ Firebase SDKs -->
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-
   <!-- ✅ Your doctor logic -->
   <script src="app-doctor.js"></script>
 </body>

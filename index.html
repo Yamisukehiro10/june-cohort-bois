@@ -4,12 +4,16 @@
   <title>Welcome</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <div class="container">
-    <h1>Welcome to the Health Portal</h1>
-    <p>Please select your role so we can help you accordingly:</p>
-    <button onclick="window.location.href='doctor.html'">Doctor</button>
-    <button onclick="window.location.href='patient.html'">Patient</button>
+<body class="landing-bg">
+  <div class="overlay"></div>
+  <div class="container landing-container">
+    <img src="https://img.icons8.com/color/96/000000/health-book.png" alt="Health Portal Logo" class="logo-img">
+    <h1 class="landing-title">Welcome to the <span class="highlight">Health Portal</span></h1>
+    <p class="landing-desc">Please select your role so we can help you accordingly:</p>
+    <div class="button-group">
+      <button class="role-btn doctor-btn" onclick="window.location.href='doctor.html'"><span>👨‍⚕️</span> Doctor</button>
+      <button class="role-btn patient-btn" onclick="window.location.href='patient.html'"><span>🧑‍🦽</span> Patient</button>
+    </div>
   </div>
 </body>
 </html>
