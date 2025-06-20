@@ -51,7 +51,7 @@ db.ref("patients").once("value")
   });
 
 // Hugging Face token (only for testing)
-const HF_API_TOKEN = "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";
+const HF_API_TOKEN = "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";
 
 async function generatePrescription(patientId) {
   const symptoms = document.getElementById(`symptoms-${patientId}`).value;
